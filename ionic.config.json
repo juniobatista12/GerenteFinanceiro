@@ -1,0 +1,7 @@
+{
+  "name": "perfilaluno",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
