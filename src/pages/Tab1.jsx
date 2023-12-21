@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonLabel, IonItem } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 import { useEffect, useState } from 'react';
@@ -30,7 +30,17 @@ const Tab1 = () => {
             <IonTitle size="large">Compras</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
+        <IonList>
+          <IonItem>
+            <IonLabel>Alubagre</IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Bagrenícius</IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Ivankov</IonLabel>
+          </IonItem>
+        </IonList>
       </IonContent>
     </IonPage>
   );
