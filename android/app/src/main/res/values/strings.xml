@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">perfilaluno</string>
-    <string name="title_activity_main">perfilaluno</string>
-    <string name="package_name">ionic.perfilaluno</string>
-    <string name="custom_url_scheme">ionic.perfilaluno</string>
+    <string name="app_name">Gerente Financeiro</string>
+    <string name="title_activity_main">Gerente Financeiro</string>
+    <string name="package_name">ionic.gerentefinanceiro</string>
+    <string name="custom_url_scheme">ionic.gerentefinanceiro</string>
 </resources>

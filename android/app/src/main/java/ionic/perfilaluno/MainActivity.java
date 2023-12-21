@@ -1,4 +1,4 @@
-package ionic.perfilaluno;
+package ionic.gerentefinanceiro;
 
 import com.getcapacitor.BridgeActivity;
 

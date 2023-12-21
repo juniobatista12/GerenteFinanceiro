@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "ionic.perfilaluno"
+    namespace "ionic.gerentefinanceiro"
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "ionic.perfilaluno"
+        applicationId "ionic.gerentefinanceiro"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
