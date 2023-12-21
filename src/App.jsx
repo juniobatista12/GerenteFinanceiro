@@ -17,6 +17,9 @@ import Tab3 from './pages/Tab3';
 import { useEffect } from 'react';
 import { createStorage, getFromStorage, setToStorage } from './components/Storage';
 
+/* Importing assets */
+import carrinhoDeCompras from './assets/carrinho-de-compras.svg'
+
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -72,7 +75,7 @@ const App = () => {
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="tab1" href="/tab1">
-              <IonIcon aria-hidden="true" icon={triangle} />
+              <IonIcon aria-hidden="true" icon={carrinhoDeCompras} />
               <IonLabel>Compras</IonLabel>
             </IonTabButton>
             <IonTabButton tab="tab2" href="/tab2">
