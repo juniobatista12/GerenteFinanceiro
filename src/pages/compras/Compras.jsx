@@ -22,6 +22,11 @@ const Compras = () => {
   const hideAddForm = () => {
     setShowAddForm(false);
   }
+
+  const handleSubmit = (descricao, valor) => {
+    console.log(descricao)
+    console.log(valor)
+  }
   
   return (
     <IonPage>
@@ -47,7 +52,7 @@ const Compras = () => {
             <IonLabel>Ivankov</IonLabel>
           </IonItem>
         </IonList>
-        {showAddForm ? <AddCompras hide={hideAddForm} /> : null}
+        {showAddForm ? <AddCompras hide={hideAddForm} submit={handleSubmit} /> : null}
         <IonButton className='addButton' shape='round' onClick={() => setShowAddForm(true)}>
           <IonIcon slot='icon-only' icon={ addOutline } />
         </IonButton>
