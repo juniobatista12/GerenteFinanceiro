@@ -38,8 +38,10 @@ const Compras = () => {
   }
 
   const handleClear = () => {
-    localStorage.clear()
-    setCompras([])
+    if (confirm("Deseja realmente apagar todos os registros?")){
+      localStorage.setItem("compras", [])
+      setCompras([])
+    }
   }
   
   return (
@@ -59,7 +61,7 @@ const Compras = () => {
           <IonItem>
           <IonGrid>
             <IonRow>
-              <IonCol><IonLabel></IonLabel></IonCol>
+              <IonCol><IonLabel>#</IonLabel></IonCol>
               <IonCol size='9'><IonLabel>Descrição</IonLabel></IonCol>
               <IonCol><IonLabel>Valor</IonLabel></IonCol>
             </IonRow>
