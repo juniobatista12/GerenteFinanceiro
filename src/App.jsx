@@ -14,8 +14,6 @@ import { ellipse, square, triangle } from 'ionicons/icons';
 import Compras from './pages/compras/Compras';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
-import { useEffect } from 'react';
-import { createStorage, getFromStorage, setToStorage } from './components/Storage';
 
 /* Importing assets */
 import carrinhoDeCompras from './assets/carrinho-de-compras.svg'
@@ -42,19 +40,6 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App = () => {
-  useEffect(()=>{
-    const setupStorage = async () => {
-      await createStorage('GerenteFinanceiro');
-      const exists = getFromStorage('exists');
-      if (!exists){
-        setToStorage('exists', true);
-        setToStorage('compras', []);
-      }
-    }
-
-    setupStorage();
-  });
-
   return(
     <IonApp>
       <IonReactRouter>

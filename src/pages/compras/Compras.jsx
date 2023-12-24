@@ -3,7 +3,6 @@ import { addOutline } from 'ionicons/icons';
 import ExploreContainer from '../../components/ExploreContainer';
 import './Compras.css';
 import React, { useEffect, useState } from 'react';
-import { getFromStorage } from '../../components/Storage';
 import AddCompras from './AddCompras';
 
 const Compras = () => {
@@ -11,13 +10,11 @@ const Compras = () => {
   const [showAddForm, setShowAddForm] = useState(false);
 
   useEffect(() => {
-    const getCompras = async () => {
-      await getFromStorage('compras').then((data) => {
-        if(data.size()){
-          setCompras(data);
-        }
+    const getCompras = () => {
+      var data = localStorage.getItem('compras')
+      if(data){
+        setCompras(JSON.parse(data));
       }
-      )
     }
 
     getCompras();
@@ -32,6 +29,7 @@ const Compras = () => {
     tmp.push({'descricao': descricao, 'valor': valor});
     setCompras(tmp);
     setShowAddForm(false);
+    localStorage.setItem('compras', JSON.stringify(compras));
   }
   
   return (
@@ -49,7 +47,6 @@ const Compras = () => {
         </IonHeader>
         <IonList>
           {compras.map((compra, index) => {
-            console.log(compra)
             return (
               <IonItem>
                 <IonGrid>
