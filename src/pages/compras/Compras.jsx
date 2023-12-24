@@ -1,6 +1,5 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonList, IonLabel, IonItem, IonButton, IonFooter, IonIcon, IonGrid, IonRow, IonCol } from '@ionic/react';
-import { addOutline } from 'ionicons/icons';
-import ExploreContainer from '../../components/ExploreContainer';
+import { addOutline, closeOutline } from 'ionicons/icons';
 import './Compras.css';
 import React, { useEffect, useState } from 'react';
 import AddCompras from './AddCompras';
@@ -26,10 +25,21 @@ const Compras = () => {
 
   const handleSubmit = (descricao, valor) => {
     const tmp = compras;
-    tmp.push({'descricao': descricao, 'valor': valor});
-    setCompras(tmp);
-    setShowAddForm(false);
-    localStorage.setItem('compras', JSON.stringify(compras));
+    valor = parseFloat(valor)
+    if (valor){
+      tmp.push({'descricao': descricao, 'valor': valor});
+      setCompras(tmp);
+      setShowAddForm(false);
+      localStorage.setItem('compras', JSON.stringify(compras));
+    }
+    else {
+      alert("Valor inválido")
+    }
+  }
+
+  const handleClear = () => {
+    localStorage.clear()
+    setCompras([])
   }
   
   return (
@@ -46,6 +56,15 @@ const Compras = () => {
           </IonToolbar>
         </IonHeader>
         <IonList>
+          <IonItem>
+          <IonGrid>
+            <IonRow>
+              <IonCol><IonLabel></IonLabel></IonCol>
+              <IonCol size='9'><IonLabel>Descrição</IonLabel></IonCol>
+              <IonCol><IonLabel>Valor</IonLabel></IonCol>
+            </IonRow>
+          </IonGrid>
+          </IonItem>
           {compras.map((compra, index) => {
             return (
               <IonItem>
@@ -53,7 +72,7 @@ const Compras = () => {
                   <IonRow>
                     <IonCol><IonLabel>{index+1}</IonLabel></IonCol>
                     <IonCol size='9'><IonLabel>{compra.descricao}</IonLabel></IonCol>
-                    <IonCol><IonLabel>{compra.valor}</IonLabel></IonCol>
+                    <IonCol><IonLabel>{compra.valor.toFixed(2)}</IonLabel></IonCol>
                   </IonRow>
                 </IonGrid>
               </IonItem>
@@ -61,6 +80,9 @@ const Compras = () => {
           })}
         </IonList>
         {showAddForm ? <AddCompras hide={hideAddForm} submit={handleSubmit} /> : null}
+        <IonButton className='clearButton' shape='round' onClick={() => handleClear()} color="danger">
+          <IonIcon slot='icon-only' icon={ closeOutline } />
+        </IonButton>
         <IonButton className='addButton' shape='round' onClick={() => setShowAddForm(true)}>
           <IonIcon slot='icon-only' icon={ addOutline } />
         </IonButton>
