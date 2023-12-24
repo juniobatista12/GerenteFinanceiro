@@ -39,8 +39,17 @@ const Compras = () => {
 
   const handleClear = () => {
     if (confirm("Deseja realmente apagar todos os registros?")){
-      localStorage.setItem("compras", [])
-      setCompras([])
+      localStorage.setItem("compras", []);
+      setCompras([]);
+    }
+  }
+
+  const handleDelete = (index) => {
+    if (confirm("Deseja deletar esse registro?")){
+      const tmp = compras;
+      tmp.splice(index, 1)
+      setCompras(tmp);
+      localStorage.setItem('compras', JSON.stringify(compras));
     }
   }
   
@@ -62,8 +71,9 @@ const Compras = () => {
           <IonGrid>
             <IonRow>
               <IonCol><IonLabel>#</IonLabel></IonCol>
-              <IonCol size='9'><IonLabel>Descrição</IonLabel></IonCol>
+              <IonCol size='8'><IonLabel>Descrição</IonLabel></IonCol>
               <IonCol><IonLabel>Valor</IonLabel></IonCol>
+              <IonCol><IonLabel>Excluir</IonLabel></IonCol>
             </IonRow>
           </IonGrid>
           </IonItem>
@@ -72,9 +82,14 @@ const Compras = () => {
               <IonItem>
                 <IonGrid>
                   <IonRow>
-                    <IonCol><IonLabel>{index+1}</IonLabel></IonCol>
-                    <IonCol size='9'><IonLabel>{compra.descricao}</IonLabel></IonCol>
-                    <IonCol><IonLabel>{compra.valor.toFixed(2)}</IonLabel></IonCol>
+                    <IonCol><IonLabel key={"index" + index}>{index+1}</IonLabel></IonCol>
+                    <IonCol size='8'><IonLabel key={"descricao" + index}>{compra.descricao}</IonLabel></IonCol>
+                    <IonCol><IonLabel key={"valor" + index}>{compra.valor.toFixed(2)}</IonLabel></IonCol>
+                    <IonCol>
+                      <IonButton key={"button" + index} shape='round' color='danger' onClick={() =>handleDelete(index)}>
+                        <IonIcon slot='icon-only' icon={closeOutline} />
+                      </IonButton>
+                    </IonCol>
                   </IonRow>
                 </IonGrid>
               </IonItem>
