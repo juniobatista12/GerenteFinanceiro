@@ -17,17 +17,17 @@ const Compras = () => {
     }
 
     getCompras();
-  })
+  }, [])
 
   const hideAddForm = () => {
     setShowAddForm(false);
   }
 
-  const handleSubmit = (descricao, valor) => {
+  const handleSubmit = (descricao, valor, data) => {
     const tmp = compras;
     valor = parseFloat(valor)
     if (valor){
-      tmp.push({'descricao': descricao, 'valor': valor});
+      tmp.push({'descricao': descricao, 'valor': valor, "data": data});
       setCompras(tmp);
       setShowAddForm(false);
       localStorage.setItem('compras', JSON.stringify(compras));
@@ -53,6 +53,12 @@ const Compras = () => {
     }
   }
   
+  const formatData = (data) => {
+    const dataObj = new Date(data);
+    dataObj.setDate(dataObj.getDate() + 1)
+    return dataObj.toLocaleDateString();
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -71,7 +77,8 @@ const Compras = () => {
           <IonGrid>
             <IonRow>
               <IonCol><IonLabel>#</IonLabel></IonCol>
-              <IonCol size='8'><IonLabel>Descrição</IonLabel></IonCol>
+              <IonCol size='7'><IonLabel>Descrição</IonLabel></IonCol>
+              <IonCol><IonLabel>Data</IonLabel></IonCol>
               <IonCol><IonLabel>Valor</IonLabel></IonCol>
               <IonCol><IonLabel>Excluir</IonLabel></IonCol>
             </IonRow>
@@ -79,14 +86,15 @@ const Compras = () => {
           </IonItem>
           {compras.map((compra, index) => {
             return (
-              <IonItem>
+              <IonItem key={"item" + index}>
                 <IonGrid>
                   <IonRow>
-                    <IonCol><IonLabel key={"index" + index}>{index+1}</IonLabel></IonCol>
-                    <IonCol size='8'><IonLabel key={"descricao" + index}>{compra.descricao}</IonLabel></IonCol>
-                    <IonCol><IonLabel key={"valor" + index}>{compra.valor.toFixed(2)}</IonLabel></IonCol>
+                    <IonCol><IonLabel>{index+1}</IonLabel></IonCol>
+                    <IonCol size='7'><IonLabel key={"descricao" + index}>{compra.descricao}</IonLabel></IonCol>
+                    <IonCol><IonLabel>{formatData(compra.data)}</IonLabel></IonCol>
+                    <IonCol><IonLabel>{compra.valor.toFixed(2)}</IonLabel></IonCol>
                     <IonCol>
-                      <IonButton key={"button" + index} shape='round' color='danger' onClick={() =>handleDelete(index)}>
+                      <IonButton shape='round' color='danger' onClick={() =>handleDelete(index)}>
                         <IonIcon slot='icon-only' icon={closeOutline} />
                       </IonButton>
                     </IonCol>
