@@ -10,13 +10,10 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { cartOutline, ellipse, gridOutline, square, triangle } from 'ionicons/icons';
 import Compras from './pages/compras/Compras';
 import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
-
-/* Importing assets */
-import carrinhoDeCompras from './assets/carrinho-de-compras.svg'
+import Categorias from './pages/categorias/Categorias';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -45,31 +42,31 @@ const App = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tab1">
+            <Route exact path="/compras">
               <Compras />
             </Route>
             <Route exact path="/tab2">
               <Tab2 />
             </Route>
-            <Route path="/tab3">
-              <Tab3 />
+            <Route path="/categorias">
+              <Categorias />
             </Route>
             <Route exact path="/">
-              <Redirect to="/tab1" />
+              <Redirect to="/compras" />
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
-            <IonTabButton tab="tab1" href="/tab1">
-              <IonIcon aria-hidden="true" icon={carrinhoDeCompras} />
+            <IonTabButton tab="tab1" href="/compras">
+              <IonIcon aria-hidden="true" icon={cartOutline} />
               <IonLabel>Compras</IonLabel>
             </IonTabButton>
             <IonTabButton tab="tab2" href="/tab2">
               <IonIcon aria-hidden="true" icon={ellipse} />
               <IonLabel>Tab 2</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tab3" href="/tab3">
-              <IonIcon aria-hidden="true" icon={square} />
-              <IonLabel>Tab 3</IonLabel>
+            <IonTabButton tab="tab3" href="/categorias">
+              <IonIcon aria-hidden="true" icon={gridOutline} />
+              <IonLabel>Categorias</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

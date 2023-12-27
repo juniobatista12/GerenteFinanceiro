@@ -41,6 +41,7 @@ const Compras = () => {
     if (confirm("Deseja realmente apagar todos os registros?")){
       localStorage.setItem("compras", []);
       setCompras([]);
+      window.location.reload();
     }
   }
 
@@ -50,6 +51,7 @@ const Compras = () => {
       tmp.splice(index, 1)
       setCompras(tmp);
       localStorage.setItem('compras', JSON.stringify(compras));
+      window.location.reload();
     }
   }
   
@@ -76,8 +78,8 @@ const Compras = () => {
           <IonItem>
           <IonGrid>
             <IonRow>
-              <IonCol><IonLabel>#</IonLabel></IonCol>
-              <IonCol size='7'><IonLabel>Descrição</IonLabel></IonCol>
+              <IonCol size='auto'><IonLabel>#</IonLabel></IonCol>
+              <IonCol><IonLabel>Descrição</IonLabel></IonCol>
               <IonCol><IonLabel>Data</IonLabel></IonCol>
               <IonCol><IonLabel>Valor</IonLabel></IonCol>
               <IonCol><IonLabel>Excluir</IonLabel></IonCol>
@@ -89,12 +91,12 @@ const Compras = () => {
               <IonItem key={"item" + index}>
                 <IonGrid>
                   <IonRow>
-                    <IonCol><IonLabel>{index+1}</IonLabel></IonCol>
-                    <IonCol size='7'><IonLabel key={"descricao" + index}>{compra.descricao}</IonLabel></IonCol>
+                    <IonCol size='auto'><IonLabel>{index+1}</IonLabel></IonCol>
+                    <IonCol><IonLabel>{compra.descricao}</IonLabel></IonCol>
                     <IonCol><IonLabel>{formatData(compra.data)}</IonLabel></IonCol>
                     <IonCol><IonLabel>{compra.valor.toFixed(2)}</IonLabel></IonCol>
                     <IonCol>
-                      <IonButton shape='round' color='danger' onClick={() =>handleDelete(index)}>
+                      <IonButton shape='round' color='danger' onClick={() =>handleDelete(index)} className='removeButton'>
                         <IonIcon slot='icon-only' icon={closeOutline} />
                       </IonButton>
                     </IonCol>
